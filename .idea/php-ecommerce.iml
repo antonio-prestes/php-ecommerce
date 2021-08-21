@@ -9,6 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpmailer/phpmailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/rain/raintpl" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/slim/slim" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hcodebr/php-classes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
