@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'fa7d6f44cc0d77fbbc83385ba7d21817bedee0fb',
+        'reference' => 'b6f5fda5f56790fc6adecef47d8546ae63a0ea74',
         'name' => 'antonioprestes/php-ecommerce',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'fa7d6f44cc0d77fbbc83385ba7d21817bedee0fb',
+            'reference' => 'b6f5fda5f56790fc6adecef47d8546ae63a0ea74',
             'dev_requirement' => false,
         ),
         'phpmailer/phpmailer' => array(
