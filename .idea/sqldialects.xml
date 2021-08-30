@@ -3,5 +3,6 @@
   <component name="SqlDialectMappings">
     <file url="file://$USER_HOME$/Desktop/Code/db_ecommerce.sql" dialect="MariaDB" />
     <file url="file://$USER_HOME$/Downloads/db-ecommerce-2019.sql" dialect="MariaDB" />
+    <file url="file://$USER_HOME$/Downloads/sp_categories_save.sql" dialect="MariaDB" />
   </component>
 </project>
