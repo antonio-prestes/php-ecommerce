@@ -8,11 +8,12 @@
     ],
     "require": {
     	"phpmailer/phpmailer":"5.2.22",
-    	"slim/slim":"2.0",
+    	"slim/slim":"*",
     	"rain/raintpl":"3.0.0",
         "ext-pdo":"*",
         "ext-mcrypt": "*",
-        "ext-openssl": "*"
+        "ext-openssl": "*",
+      "ext-gd": "*"
     },
     "autoload": {
         "psr-4": {
