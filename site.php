@@ -1,6 +1,9 @@
 <?php
 use \Hcode\Page;
-use \Slim\Slim;
+use Slim\Slim;
+
+
+$app = new Slim();
 
 
 $app->get('/', function () {

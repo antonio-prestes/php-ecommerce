@@ -1,5 +1,5 @@
 <?php
-use \Slim\Slim;
+use Slim\Slim;
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 
