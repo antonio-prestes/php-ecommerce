@@ -1,15 +1,15 @@
 <?php
+
 use \Hcode\Page;
-use Slim\Slim;
-
-
-$app = new Slim();
+use \Hcode\Model\Product;
 
 
 $app->get('/', function () {
-    $page = new Page([
+    $products = Product::listAll();
+    $page = new Page();
+    $page->setTpl("index",[
+        'products'=>Product::checklist($products)
     ]);
-    $page->setTpl("index");
 });
 
 
