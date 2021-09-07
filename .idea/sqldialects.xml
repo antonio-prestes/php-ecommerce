@@ -6,5 +6,6 @@
     <file url="file://$USER_HOME$/Downloads/sp_categories_save.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/procedure/products.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/procedure/sp_products_save.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/procedure/tb_categoriesproducts.sql" dialect="MariaDB" />
   </component>
 </project>

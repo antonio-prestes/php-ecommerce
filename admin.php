@@ -1,10 +1,7 @@
 <?php
-use Slim\Slim;
+
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
-
-
-$app = new Slim();
 
 $app->get('/admin', function () {
     User::verifyLogin();
