@@ -13,7 +13,8 @@
         "ext-pdo":"*",
         "ext-mcrypt": "*",
         "ext-openssl": "*",
-      "ext-gd": "*"
+      "ext-gd": "*",
+      "ext-simplexml": "*"
     },
     "autoload": {
         "psr-4": {
