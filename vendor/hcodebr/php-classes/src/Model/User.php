@@ -14,6 +14,7 @@ class User extends Model
     const SECRET = "HcodePhp7_Secret";
     const SECRET_IV = "HcodePhp7_Secret_IV";
     const SESSION_ERROR = "UserError";
+    const ERROR_REGISTER = "ErrorRegister";
 
     public static function getFromSession()
     {
@@ -51,16 +52,14 @@ class User extends Model
     {
         $sql = new Sql();
         $results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.deslogin = :LOGIN", array(
-            ":LOGIN"=>$login
+            ":LOGIN" => $login
         ));
-        if (count($results) === 0)
-        {
+        if (count($results) === 0) {
             throw new \Exception("Usuário inexistente ou senha inválida.");
 
         }
         $data = $results[0];
-        if (password_verify($password, $data["despassword"]) === true)
-        {
+        if (password_verify($password, $data["despassword"]) === true) {
             $user = new User();
             $data['desperson'] = utf8_encode($data['desperson']);
             $user->setData($data);
@@ -75,9 +74,9 @@ class User extends Model
     public static function verifyLogin($inadmin = true)
     {
 
-        if(!User::checkLogin($inadmin)) {
+        if (!User::checkLogin($inadmin)) {
 
-            if ($inadmin){
+            if ($inadmin) {
                 header("Location: /admin/login");
             } else {
                 header("Location: /login");
@@ -240,6 +239,33 @@ class User extends Model
     public static function clearError()
     {
         $_SESSION[User::SESSION_ERROR] = NULL;
+    }
+
+    public static function setErrorRegister($msg)
+    {
+        $_SESSION[User::ERROR_REGISTER] = $msg;
+    }
+
+    public static function getErrorRegister()
+    {
+        $msg = (isset($_SESSION[User::ERROR_REGISTER])) ? $_SESSION[User::ERROR_REGISTER] : "";
+        User::clearError();
+        return $msg;
+    }
+
+    public static function clearErrorRegister()
+    {
+        $_SESSION[User::ERROR_REGISTER] = NULL;
+    }
+
+    public static function checkLoginExist($login)
+    {
+        $sql = new Sql();
+        $results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :deslogin", [
+            ':deslogin' => $login
+        ]);
+
+        return (count($results) > 0);
     }
 }
 
