@@ -188,11 +188,11 @@ $app->post("/checkout", function () {
     $order = new Order();
 
     $order->setData([
-        'idcart'=>$cart->getidcart(),
-        'idaddress'=>$address->getidaddress(),
-        'iduser'=>$user->getiduser(),
-        'idstatus'=>OrderStatus::EM_ABERTO,
-        'vltotal'=>$cart->getvltotal()
+        'idcart' => $cart->getidcart(),
+        'idaddress' => $address->getidaddress(),
+        'iduser' => $user->getiduser(),
+        'idstatus' => OrderStatus::EM_ABERTO,
+        'vltotal' => $cart->getvltotal()
     ]);
 
     $order->save();
@@ -398,8 +398,8 @@ $app->get("/boleto/:idorder", function ($idorder) {
 
 // DADOS DO SEU CLIENTE
     $dadosboleto["sacado"] = $order->getdesperson();
-    $dadosboleto["endereco1"] = $order->getdesaddress()."".$order->getdesdistrict();
-    $dadosboleto["endereco2"] = $order->getdescity()."".$order->getdesstate()."".$order->getdeszipcode();
+    $dadosboleto["endereco1"] = $order->getdesaddress() . "" . $order->getdesdistrict();
+    $dadosboleto["endereco2"] = $order->getdescity() . "" . $order->getdesstate() . "" . $order->getdeszipcode();
 
 // INFORMACOES PARA O CLIENTE
     $dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Hcode E-commerce";
@@ -444,17 +444,17 @@ $app->get("/boleto/:idorder", function ($idorder) {
     require_once($path . "layout_itau.php");
 
 });
-$app->get("/profile/orders", function (){
-   User::verifyLogin(false);
+$app->get("/profile/orders", function () {
+    User::verifyLogin(false);
 
-   $user = User::getFromSession();
+    $user = User::getFromSession();
 
-   $page = new Page();
-   $page->setTpl("profile-orders",[
-      'orders'=>$user->getOrders()
-   ]);
+    $page = new Page();
+    $page->setTpl("profile-orders", [
+        'orders' => $user->getOrders()
+    ]);
 });
-$app->get("/profile/orders/:idorder", function ($idorder){
+$app->get("/profile/orders/:idorder", function ($idorder) {
     User::verifyLogin(false);
 
     $order = new Order();
@@ -465,11 +465,64 @@ $app->get("/profile/orders/:idorder", function ($idorder){
     $cart->getCalculateTotal();
 
     $page = new Page();
-    $page->setTpl("profile-orders-detail",[
-        'order'=>$order->getValues(),
-        'cart'=>$cart->getValues(),
-        'products'=>$cart->getProducts()
+    $page->setTpl("profile-orders-detail", [
+        'order' => $order->getValues(),
+        'cart' => $cart->getValues(),
+        'products' => $cart->getProducts()
     ]);
+});
+$app->get("/profile/change-password", function () {
+    User::verifyLogin(false);
+
+    $page = new Page();
+    $page->setTpl("profile-change-password", [
+        'changePassError' => User::getError(),
+        'changePassSuccess' => User::getSuccess()
+    ]);
+});
+$app->post("/profile/change-password", function () {
+    User::verifyLogin(false);
+
+    if (!isset($_POST['current_pass']) || $_POST['current_pass'] === '') {
+        User::setError("Digite a senha atual.");
+        header("Location: /profile/change-password");
+        exit();
+    }
+    if (!isset($_POST['new_pass']) || $_POST['new_pass'] === '') {
+        User::setError("Digite a nova senha.");
+        header("Location: /profile/change-password");
+        exit();
+    }
+    if (!isset($_POST['new_pass_confirm']) || $_POST['new_pass_confirm'] === '') {
+        User::setError("Digite a nova senha novamente.");
+        header("Location: /profile/change-password");
+        exit();
+    }
+    if ($_POST['new_pass'] != $_POST['new_pass_confirm']){
+        User::setError("A senha deve ser igual a nova.");
+        header("Location: /profile/change-password");
+        exit();
+    }
+    if (($_POST['current_pass']) === $_POST['new_pass']) {
+        User::setError("A sua nova senha deve ser diferente da atual.");
+        header("Location: /profile/change-password");
+        exit();
+    }
+
+    $user = User::getFromSession();
+    if (!password_verify($_POST['current_pass'], $user->getdespassword())) {
+        User::setError("A senha é inválida.");
+        header("Location: /profile/change-password");
+        exit();
+    }
+
+    $user->setdespassword($_POST['new_pass']);
+    $user->update();
+
+    User::setSuccess("Senha alterada com sucesso.");
+    header("Location: /profile/change-password");
+    exit();
+
 });
 
 
