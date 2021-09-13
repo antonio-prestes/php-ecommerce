@@ -173,9 +173,10 @@ class Cart extends Model
 
         if ($totals['nrqtd'] > 0) {
 
-            if ($totals['vlheight'] > 2) $totals['vlheight'] = 2;
-            if ($totals['vllength'] > 16) $totals['vlheight'] = 16;
-            if ($totals['vlwidth'] > 11) $totals['vlheight'] = 11;
+            if ($totals['vlheight'] < 2.0 ) $totals['vlheight'] = 2;
+            if ($totals['vllength'] < 16.0) $totals['vllength'] = 16;
+            if ($totals['vlwidth'] < 11) $totals['vlheight'] = 11;
+            if ($totals['vlweight'] < 11) $totals['vlweight'] = 11;
 
             $qs = http_build_query([
                 'nCdEmpresa' => '',
@@ -189,7 +190,7 @@ class Cart extends Model
                 'nVlAltura' => $totals['vlheight'],
                 'nVlLargura' => $totals['vlwidth'],
                 'nVlDiametro' => '1',
-                'sCdMaoPropria' => 'S',
+                'sCdMaoPropria' => '0',
                 'nVlValorDeclarado' => $totals['vlprice'],
                 'sCdAvisoRecebimento' => 'S'
             ]);
