@@ -14,7 +14,8 @@
         "ext-mcrypt": "*",
         "ext-openssl": "*",
       "ext-gd": "*",
-      "ext-simplexml": "*"
+      "ext-simplexml": "*",
+      "ext-curl": "*"
     },
     "autoload": {
         "psr-4": {

@@ -53,7 +53,7 @@ class User extends Model
     {
         $sql = new Sql();
         $results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.deslogin = :LOGIN", array(
-            ":LOGIN" => $login
+            ":LOGIN"=>$login
         ));
         if (count($results) === 0) {
             throw new \Exception("Usuário inexistente ou senha inválida.");
@@ -82,7 +82,7 @@ class User extends Model
             } else {
                 header("Location: /login");
             }
-
+            exit;
         }
 
     }
