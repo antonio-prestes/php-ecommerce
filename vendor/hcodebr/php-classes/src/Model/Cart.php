@@ -173,7 +173,7 @@ class Cart extends Model
 
         if ($totals['nrqtd'] > 0) {
 
-            if ($totals['vlheight'] < 2.0 ) $totals['vlheight'] = 2;
+            if ($totals['vlheight'] < 2.0) $totals['vlheight'] = 2;
             if ($totals['vllength'] < 16.0) $totals['vllength'] = 16;
             if ($totals['vlwidth'] < 11) $totals['vlheight'] = 11;
             if ($totals['vlweight'] < 11) $totals['vlweight'] = 11;

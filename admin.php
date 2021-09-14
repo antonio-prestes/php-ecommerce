@@ -73,4 +73,5 @@ $app->post("/admin/forgot/reset", function () {
         "footer" => false
     ]);
     $page->setTpl("forgot-reset-success");
+
 });
