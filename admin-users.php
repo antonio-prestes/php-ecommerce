@@ -1,16 +1,41 @@
 <?php
+
 use \Slim\Slim;
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 
 
-
 $app->get('/admin/users', function () {
     User::verifyLogin();
-    $users = User::listAll();
+
+    $search = (isset($_GET['search'])) ? $_GET['search'] : "";
+    $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+    if ($search !=''){
+        $pagination = User::getPageSearch($search,$page);
+    } else {
+        $pagination = User::getPage($page,10);
+    }
+
+
+
+    $pages = [];
+
+    for ($p = 0; $p < $pagination['pages']; $p++) {
+        array_push($pages, [
+            'href' => "/admin/users?" . http_build_query([
+                    'page' => $p+1,
+                    'search' => $search
+                ]),
+            'text'=>$p+1
+        ]);
+    }
+
     $page = new PageAdmin();
     $page->setTpl("users", array(
-        "users" => $users
+        "users" => $pagination['data'],
+        "search" => $search,
+        "pages"=>$pages
     ));
 });
 $app->get('/admin/users/create', function () {

@@ -96,7 +96,8 @@ class Category extends Model
         ]);
     }
 
-    public function getProductsPage($page = 1, $itemsPerPage = 8){
+    public function getProductsPage($page = 1, $itemsPerPage = 8)
+    {
         $start = ($page - 1) * $itemsPerPage;
         $sql = new Sql();
         $results = $sql->select("
@@ -108,15 +109,15 @@ class Category extends Model
         ON c.idcategory = b.idcategory
         WHERE c.idcategory = :idcategory
         LIMIT $start, $itemsPerPage;
-        ",[
-            ':idcategory'=>$this->getidcategory()
+        ", [
+            ':idcategory' => $this->getidcategory()
         ]);
-       $resultTotal =  $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-       return[
-           'data'=>Product::checkList($results),
-           'total'=>(int)$resultTotal[0]["nrtotal"],
-           'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
-       ];
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+        return [
+            'data' => Product::checkList($results),
+            'total' => (int)$resultTotal[0]["nrtotal"],
+            'pages' => ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+        ];
     }
 
 }
