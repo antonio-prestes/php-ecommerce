@@ -14,10 +14,8 @@ $app->get('/admin/users', function () {
     if ($search !=''){
         $pagination = User::getPageSearch($search,$page);
     } else {
-        $pagination = User::getPage($page,10);
+        $pagination = User::getPage($page);
     }
-
-
 
     $pages = [];
 
