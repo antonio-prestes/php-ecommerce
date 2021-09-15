@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("vendor/autoload.php");
+ini_set('memory_limit', '3024M');
 
 use Slim\Slim;
 
