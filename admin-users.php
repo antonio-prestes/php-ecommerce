@@ -4,15 +4,56 @@ use \Slim\Slim;
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 
+$app->get('/admin/users/:iduser/password', function ($iduser) {
+    User::verifyLogin();
 
+    $user = new User();
+    $user->get((int)$iduser);
+
+    $page = new PageAdmin();
+    $page->setTpl("users-password", [
+        "user" => $user->getValues(),
+        "msgError" => User::getError(),
+        "msgSuccess" => User::getSuccess()
+    ]);
+});
+$app->post('/admin/users/:iduser/password', function ($iduser) {
+    User::verifyLogin();
+
+    if (!isset($_POST['despassword']) || $_POST['despassword'] === '') {
+        User::setError("Preencha a nova senha.");
+        header("Location: /admin/users/$iduser/password");
+        exit();
+    }
+    if (!isset($_POST['despassword-confirm']) || $_POST['despassword-confirm'] === '') {
+        User::setError("Preencha a confirmação de senha.");
+        header("Location: /admin/users/$iduser/password");
+        exit();
+    }
+    if ($_POST['despassword'] !== $_POST['despassword-confirm']) {
+        User::setError("Confirme corretamente as senhas.");
+        header("Location: /admin/users/$iduser/password");
+        exit();
+    }
+
+    $user = new User();
+    $user->get((int)$iduser);
+    $user->setPassword(User::getPasswordHash($_POST['despassword']));
+
+    User::setSuccess("Senha alterada com Sucesso.");
+    header("Location: /admin/users/$iduser/password");
+    exit();
+
+
+});
 $app->get('/admin/users', function () {
     User::verifyLogin();
 
     $search = (isset($_GET['search'])) ? $_GET['search'] : "";
     $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-    if ($search !=''){
-        $pagination = User::getPageSearch($search,$page);
+    if ($search != '') {
+        $pagination = User::getPageSearch($search, $page);
     } else {
         $pagination = User::getPage($page);
     }
@@ -22,18 +63,18 @@ $app->get('/admin/users', function () {
     for ($p = 0; $p < $pagination['pages']; $p++) {
         array_push($pages, [
             'href' => "/admin/users?" . http_build_query([
-                    'page' => $p+1,
+                    'page' => $p + 1,
                     'search' => $search
                 ]),
-            'text'=>$p+1
+            'text' => $p + 1
         ]);
     }
-
     $page = new PageAdmin();
+
     $page->setTpl("users", array(
         "users" => $pagination['data'],
         "search" => $search,
-        "pages"=>$pages
+        "pages" => $pages
     ));
 });
 $app->get('/admin/users/create', function () {
@@ -41,7 +82,6 @@ $app->get('/admin/users/create', function () {
     $page = new PageAdmin();
     $page->setTpl("users-create");
 });
-
 $app->get('/admin/users/:iduser/delete', function ($iduser) {
     User::verifyLogin();
     $user = new User;
