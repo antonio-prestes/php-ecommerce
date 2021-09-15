@@ -75,7 +75,7 @@ class Order extends Model
 
     }
 
-    public function getCart():Cart
+    public function getCart(): Cart
     {
         $cart = new Cart();
         $cart->get((int)$this->getidcart());
@@ -83,7 +83,7 @@ class Order extends Model
         return $cart;
     }
 
-    public static function setSuccess ($msg)
+    public static function setSuccess($msg)
     {
         $_SESSION[Order::SUCCESS] = $msg;
     }
@@ -106,12 +106,69 @@ class Order extends Model
         Order::clearError();
         return $msg;
     }
+
     public static function clearError()
     {
         $_SESSION[Order::ERROR] = NULL;
     }
+
     public static function setError($msg)
     {
         $_SESSION[Order::ERROR] = $msg;
+    }
+
+    public static function getPage($page = 1, $itemsPerPage = 10)
+    {
+        $start = ($page - 1) * $itemsPerPage;
+
+        $sql = new Sql();
+        $results = $sql->select("
+        SELECT * 
+        FROM tb_orders a
+        INNER JOIN tb_ordersstatus b USING(idstatus)
+        INNER JOIN tb_carts USING(idcart)
+        INNER JOIN tb_users d ON d.iduser = a.iduser 
+        INNER JOIN tb_addresses e USING(idaddress)
+        INNER JOIN tb_persons f ON f.idperson = d.idperson
+        ORDER BY a.dtregister DESC
+        LIMIT $start, $itemsPerPage;
+        ");
+
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+        return [
+            'data' => $results,
+            'total' => (int)$resultTotal[0]["nrtotal"],
+            'pages' => ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+        ];
+    }
+
+    public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
+    {
+        $start = ($page - 1) * $itemsPerPage;
+
+        $sql = new Sql();
+        $results = $sql->select("
+        SELECT * 
+        FROM tb_orders a
+        INNER JOIN tb_ordersstatus b USING(idstatus)
+        INNER JOIN tb_carts USING(idcart)
+        INNER JOIN tb_users d ON d.iduser = a.iduser 
+        INNER JOIN tb_addresses e USING(idaddress)
+        INNER JOIN tb_persons f ON f.idperson = d.idperson
+        WHERE a.idorder = :search 
+        ORDER BY a.dtregister DESC
+        LIMIT $start, $itemsPerPage;
+        ", [
+            ':search' => (int)$search
+        ]);
+
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+        return [
+            'data' => $results,
+            'total' => (int)$resultTotal[0]["nrtotal"],
+            'pages' => ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+        ];
     }
 }
