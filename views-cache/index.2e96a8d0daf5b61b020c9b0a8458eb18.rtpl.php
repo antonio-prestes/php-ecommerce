@@ -1,4 +1,4 @@
-<!-- Inspiro Slider -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Inspiro Slider -->
 <div id="slider" class="inspiro-slider dots-creative" data-height-xs="360" data-autoplay="2600" data-animate-in="fadeIn"
      data-animate-out="fadeOut" data-items="1" data-loop="true" data-autoplay="true">
     <!-- Slide 1 -->
@@ -64,21 +64,21 @@
         <div class="shop">
             <div class="row">
 
-                {loop="$products"}
+                <?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
 
                 <div class="col-lg-3">
                     <div class="product">
                         <div class="product-image">
-                            <a href="/products/{$value.desurl}"><img alt="Shop product image!" src="{$value.desphoto}">
+                            <a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><img alt="Shop product image!" src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                             </a>
-                            <a href="/products/{$value.desurl}"><img alt="Shop product image!" src="{$value.desphoto}">
+                            <a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><img alt="Shop product image!" src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                             </a>
                             <span class="product-new">NEW</span>
                             <span class="product-wishlist">
                                         <a href="#"><i class="fa fa-heart"></i></a>
                                     </span>
                             <div class="product-overlay">
-                                <a href="/cart/{$value.idproduct}/add" >Adicionar ao Carrinho</a>
+                                <a href="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add" >Adicionar ao Carrinho</a>
                             </div>
                         </div>
 
@@ -88,7 +88,7 @@
                                 <h3><a href="#">Bolt Sweatshirt</a></h3>
                             </div>
                             <div class="product-price">
-                                <ins>R${function="formatPrice($value.vlprice)"}</ins>
+                                <ins>R$<?php echo formatPrice($value1["vlprice"]); ?></ins>
                             </div>
                             <div class="product-rate">
                                 <i class="fa fa-star"></i>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                {/loop}
+                <?php } ?>
 
             </div>
         </div>

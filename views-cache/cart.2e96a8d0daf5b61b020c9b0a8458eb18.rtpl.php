@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -33,36 +33,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {loop="$product"}
+                            <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
                                 <tr>
                                     <td class="cart-product-remove">
-                                        <a href="/cart/{$value.idproduct}/remove"><i class="fa fa-times"></i></a>
+                                        <a href="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/remove"><i class="fa fa-times"></i></a>
                                     </td>
                                     <td class="cart-product-thumbnail">
-                                        <a href="/products/{$value.desurl}">
-                                            <img src="{$value.desphoto}" alt="Bolt Sweatshirt">
+                                        <a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                            <img src="<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Bolt Sweatshirt">
                                         </a>
                                         <div class="cart-product-thumbnail-name">Bolt Sweatshirt</div>
                                     </td>
                                     <td class="cart-product-description">
-                                        <p><span>{$value.desproduct}</span>
+                                        <p><span><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
                                         </p>
                                     </td>
                                     <td class="cart-product-price">
-                                        <span class="amount">R${function="formatPrice($value.vlprice)"}</span>
+                                        <span class="amount">R$<?php echo formatPrice($value1["vlprice"]); ?></span>
                                     </td>
                                     <td class="cart-product-quantity">
                                         <div class="quantity">
-                                            <input type="button" class="minus" value="-" onclick="window.location.href = '/cart/{$value.idproduct}/minus'">
-                                            <input type="text" class="qty" value="{$value.nrqtd}" name="quantity">
-                                            <input type="button" class="plus" value="+" onclick="window.location.href = '/cart/{$value.idproduct}/add'">
+                                            <input type="button" class="minus" value="-" onclick="window.location.href = '/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/minus'">
+                                            <input type="text" class="qty" value="<?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" name="quantity">
+                                            <input type="button" class="plus" value="+" onclick="window.location.href = '/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add'">
                                         </div>
                                     </td>
                                     <td class="cart-product-subtotal">
-                                        <span class="amount">R${function="formatPrice($value.vltotal)"}</span>
+                                        <span class="amount">R$<?php echo formatPrice($value1["vltotal"]); ?></span>
                                     </td>
                                 </tr>
-                            {/loop}
+                            <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -87,7 +87,7 @@
                                                 <strong>Subtotal</strong>
                                             </td>
                                             <td class="cart-product-name text-end">
-                                                <span class="amount">R${function="formatPrice($cart.vlsubtotal)"}</span>
+                                                <span class="amount">R$<?php echo formatPrice($cart["vlsubtotal"]); ?></span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -95,7 +95,7 @@
                                                 <strong>Frete</strong>
                                             </td>
                                             <td class="cart-product-name  text-end">
-                                                <span class="amount">R${function="formatPrice($cart.vlfreight)"}</span>
+                                                <span class="amount">R$<?php echo formatPrice($cart["vlfreight"]); ?></span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -103,13 +103,13 @@
                                                 <strong>Total</strong>
                                             </td>
                                             <td class="cart-product-name text-end">
-                                                <span class="amount color lead"><strong>R${function="formatPrice($cart.vltotal)"}</strong></span>
+                                                <span class="amount color lead"><strong>R$<?php echo formatPrice($cart["vltotal"]); ?></strong></span>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <input type="submit" value="Finalizar Compra" name="proceed" class="btn icon-left float-right">
+                            <a type="submit" class="btn icon-left float-right"><span>Finalizar Compra</span></a>
                         </div>
                     </div>
                 </div>

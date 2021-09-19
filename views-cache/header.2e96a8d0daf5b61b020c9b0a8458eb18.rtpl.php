@@ -1,124 +1,91 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
-<!--
-    Hcode Store by hcode.com.br
--->
-<html lang="pt-br">
+<html lang="pt">
+
 <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="INSPIRO" />
+    <meta name="description" content="Themeforest Template Polo, html template">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PHP Store</title>
-
-    <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
-          type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="/res/site/css/bootstrap.min.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="/res/site/css/font-awesome.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/res/site/css/owl.carousel.css">
-    <link rel="stylesheet" href="/res/site/css/style.css">
-    <link rel="stylesheet" href="/res/site/css/responsive.css">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- Document title -->
+    <title>PHP | Ecommerce</title>
+    <!-- Stylesheets & Fonts -->
+    <link href="../res/Ecommerce/css/plugins.css" rel="stylesheet">
+    <link href="../res/Ecommerce/css/style.css" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="header-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="user-menu">
-                    <ul>
-                        <li><a href="/profile"><i class="fa fa-user"></i> Minha Conta</a></li>
-                        <li><a href="#"><i class="fa fa-heart"></i> Lista de Desejos</a></li>
-                        <li><a href="/cart"><i class="fa fa-shopping-cart"></i> Meu Carrinho</a></li>
-                     //   <?php if( checkLogin(false) ){ ?>
-                        <li><a href="/profile"><i class="fa fa-user"></i> <?php echo getusername(); ?></a></li>
-                        <li><a href="/logout"><i class="fa fa-close"></i> Sair</a></li>
-                     //   <?php }else{ ?>
-                        <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
-                     //   <?php } ?>
+
+<!-- Body Inner -->
+<div class="body-inner">
+
+    <!-- Topbar -->
+    <div id="topbar" class="d-none d-xl-block d-lg-block topbar-fullwidth">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="top-menu">
+                        <li><a href="/profile">Minha Conta</a></li>
+                        <li><a href="#">Lista de Desejos</a></li>
+                        <li><a href="/cart">Meu Carrinho</a></li>
+                        <?php if( checkLogin(false) ){ ?>
+                        <li><a href="/profile"><?php echo getusername(); ?></a></li>
+                        <li><a href="/logout">Sair</a></li>
+                        <?php }else{ ?>
+                        <li><a href="/login">Login</a></li>
+                        <?php } ?>
                     </ul>
                 </div>
+                <div class="col-md-6 d-none d-sm-block">
+                    <div class="social-icons social-icons-colored-hover">
+                        <ul>
+                            <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="social-youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+    <!-- end: Topbar -->
 
-            <div class="col-md-4">
-                <div class="header-right">
-                    <ul class="list-unstyled list-inline">
-                        <li class="dropdown dropdown-small">
-                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
-                                    class="key">moeda :</span><span class="value">BRL </span><b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">BRL</a></li>
-                                <li><a href="#">USD</a></li>
+    <!-- Header -->
+    <header id="header" data-fullwidth="true">
+        <div class="header-inner">
+            <div class="container">
+                <!--Logo-->
+                <div id="logo"> <a href="/"><span class="logo-default">POLO</span><span class="logo-dark">POLO</span></a> </div>
+                <!--End: Logo-->
+                <!--Navigation Resposnive Trigger-->
+                <div id="mainMenu-trigger"> <a class="lines-button x"><span class="lines"></span></a> </div>
+                <!--end: Navigation Resposnive Trigger-->
+                <!--Navigation-->
+                <div id="mainMenu">
+                    <div class="container">
+                        <nav>
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/products">Produtos</a></li>
+                                <li class="dropdown"><a href="#">Categorias</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="menu.html">Default</a></li>
+                                        <li><a href="menu-lowercase.html">Lowercase</a></li>
+                                        <li><a href="menu-split.html">Split Menu</a></li>
+                                        <li><a href="menu-sub-title.html">Sub Title Menu</a></li>
+                                        <li><a href="menu-overlay.html">Overlay Menu</a></li>
+                                        <li><a href="menu-creative.html">Creative Menu</a></li>
+                                        <li><a href="menu-lines.html">Lines Menu</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/cart">Carrinho</a></li>
                             </ul>
-                        </li>
-
-                        <li class="dropdown dropdown-small">
-                            <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
-                                    class="key">linguagem :</span><span class="value">Português </span><b
-                                    class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Português</a></li>
-                                <li><a href="#">Inglês</a></li>
-                                <li><a href="#">Espanhol</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                        </nav>
+                    </div>
                 </div>
+                <!--end: Navigation-->
             </div>
         </div>
-    </div>
-</div> <!-- End header area -->
-<div class="site-branding-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="logo">
-                    <h1><a href="/"><img src="/res/site/img/logo.png"></a></h1>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="shopping-item">
-                    <a href="/cart">Carrinho - <span class="cart-amunt">R$<?php echo getCartVlSubTotal(); ?></span> <i class="fa fa-shopping-cart"></i>
-                        <span class="product-count"><?php echo getCartNrQtd(); ?></span></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> <!-- End site branding area -->
-
-<div class="mainmenu-area">
-    <div class="container">
-        <div class="row">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/products">Produtos</a></li>
-                    <li><a href="/cart">Carrinho</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+    </header>
+    <!-- end: Header -->

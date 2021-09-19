@@ -241,6 +241,7 @@ $app->get("/login", function () {
             ['name' => '', 'email' => '', 'phone' => '']
     ]);
 });
+
 $app->post("/login", function () {
     try {
         User::login($_POST['login'], $_POST['password']);
@@ -256,6 +257,17 @@ $app->get("/logout", function () {
 
     header("Location: /login");
     exit;
+});
+
+$app->get("/register", function () {
+
+    $page = new Page();
+    $page->setTpl("register", [
+        'error' => User::getError(),
+        'errorRegister' => User::getErrorRegister(),
+        'registerValues' => (isset($_SESSION['registerValues'])) ? $_SESSION['registerValues'] :
+            ['name' => '', 'email' => '', 'phone' => '']
+    ]);
 });
 
 $app->post("/register", function () {
@@ -305,6 +317,7 @@ $app->post("/register", function () {
     header("Location: /checkout");
     exit();
 });
+
 $app->get('/forgot', function () {
     $page = new Page();
     $page->setTpl("forgot");
