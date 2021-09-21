@@ -5,11 +5,10 @@
     <!-- Section -->
     <section class="pt-5 pb-5">
         <div class="container-fluid d-flex flex-column">
-            <div class="row align-items-center min-vh-100">
+            <div class="row align-items-center">
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <h3>Register New Account</h3>
-                    <p>Create an account by entering the information below. If you are a returning customer please login
-                        at the top of the page.</p>
+                    <h3>Registrar nova conta</h3>
+                    <p>Crie uma conta inserindo as informações abaixo. Se você já é cliente, faça o login na parte superior da página.</p>
                     <form id="form1" class="form-validate mt-5" action="/register" method="post">
                         <div class="h5 mb-4">Account details</div>
                         <div class="row">
@@ -21,7 +20,7 @@
                             <div class="form-group col-md-6">
                                 <label for="telephone">Telefone</label>
                                 <input class="form-control" type="tel" name="phone"
-                                       placeholder="Enter your Telephone number" required="">
+                                       placeholder="Insira seu Telefone" required="">
                             </div>
 
                         </div>

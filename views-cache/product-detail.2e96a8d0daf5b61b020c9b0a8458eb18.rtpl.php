@@ -1,93 +1,518 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="product-big-title-area">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="author" content="INSPIRO"/>
+    <meta name="description" content="Themeforest Template Polo, html template">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Document title -->
+    <title>POLO | The Multi-Purpose HTML5 Template</title>
+    <!-- Stylesheets & Fonts -->
+    <link href="../res/Ecommerce/css/plugins.css" rel="stylesheet">
+    <link href="../res/Ecommerce/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<!-- SHOP PRODUCT PAGE -->
+<section id="product-page" class="product-page p-b-0">
     <div class="container">
+        <div class="product">
+            <div class="row m-b-40">
+                <div class="col-lg-5">
+                    <div class="product-image">
+                        <!-- Carousel slider -->
+                        <div class="carousel dots-inside dots-dark arrows-visible" data-items="1" data-loop="true"
+                             data-autoplay="true" data-animate-in="fadeIn" data-animate-out="fadeOut"
+                             data-autoplay="2500" data-lightbox="gallery">
+                            <a href="" data-lightbox="image" title="Shop product image!"><img alt="Shop product image!"
+                                                                                              src="<?php echo htmlspecialchars( $product["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                            </a>
+                            <a href="" data-lightbox="image" title="Shop product image!"><img alt="Shop product image!"
+                                                                                              src="<?php echo htmlspecialchars( $product["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                            </a>
+                        </div>
+                        <!-- Carousel slider -->
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="product-description">
+                        <p class="product-category">Categorias<?php $counter1=-1;  if( isset($categories) && ( is_array($categories) || $categories instanceof Traversable ) && sizeof($categories) ) foreach( $categories as $key1 => $value1 ){ $counter1++; ?><a
+                                href="/categories/<?php echo htmlspecialchars( $value1["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"> <?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a><?php } ?>.
+                        <div class="product-title">
+                            <h3><a href="#"><?php echo htmlspecialchars( $product["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></h3>
+                        </div>
+                        <div class="product-price">
+                            <ins>R$<?php echo formatPrice($product["vlprice"]); ?></ins>
+                        </div>
+                        <div class="product-rate">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                        <div class="product-reviews"><a href="#">3 customer reviews</a>
+                        </div>
+                        <div class="seperator m-b-10"></div>
+                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+                            classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
+                            Latin professor at Hampden-Sydney
+                            College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
+                            Lorem Ipsum passage, and going through the cites of the word in</p>
+                        <div class="product-meta">
+                            <p>Tags: <a href="#" rel="tag">Clothing</a>, <a rel="tag" href="#">T-shirts</a>
+                            </p>
+                        </div>
+                        <div class="seperator m-t-20 m-b-10"></div>
+                    </div>
+                    <form action="/cart/<?php echo htmlspecialchars( $product["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add" class="cart">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <h6>Select quantity</h6>
+                                <div class="cart-product-quantity">
+                                    <div class="quantity">
+                                        <input type="number" size="4" class="input-text qty text" title="qtd" value="1"
+                                               name="qtd" min="1" step="1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <h6>Add to Cart</h6>
+                                <button class="btn btn-primary" type="submit"><i class="icon-shopping-cart"
+                                                                                 type="submit"></i> Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Product additional tabs -->
+            <div class="tabs tabs-folder">
+                <ul class="nav nav-tabs" id="myTab3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active show" id="home-tab" data-bs-toggle="tab" href="#home3" role="tab"
+                           aria-controls="home" aria-selected="false"><i
+                                class="fa fa-align-justify"></i>Description</a></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile3" role="tab"
+                           aria-controls="profile" aria-selected="true"><i class="fa fa-info"></i>Additional
+                            Info</a></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact3" role="tab"
+                           aria-controls="contact" aria-selected="false"><i class="fa fa-star"></i>Reviews</a></a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent3">
+                    <div class="tab-pane fade active show" id="home3" role="tabpanel" aria-labelledby="home-tab">
+                        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id
+                            quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+                            Temporibus autem quibusdam et aut officiis
+                            debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et
+                            molestiae non recusandae. </p>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                            voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
+                            cupiditate non provident, similique sunt in
+                            culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
+                            rerum facilis est et expedita distinctio.</p>
+                    </div>
+                    <div class="tab-pane fade " id="profile3" role="tabpanel" aria-labelledby="profile-tab">
+                        <table class="table table-striped table-bordered">
+                            <tbody>
+                            <tr>
+                                <td>Size</td>
+                                <td>Small, Medium &amp; Large</td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td>Pink &amp; White</td>
+                            </tr>
+                            <tr>
+                                <td>Waist</td>
+                                <td>26 cm</td>
+                            </tr>
+                            <tr>
+                                <td>Length</td>
+                                <td>40 cm</td>
+                            </tr>
+                            <tr>
+                                <td>Chest</td>
+                                <td>33 inches</td>
+                            </tr>
+                            <tr>
+                                <td>Fabric</td>
+                                <td>Cotton, Silk &amp; Synthetic</td>
+                            </tr>
+                            <tr>
+                                <td>Warranty</td>
+                                <td>3 Months</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="contact3" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="comments" id="comments">
+                            <div class="comment_number">
+                                Reviews <span>(3)</span>
+                            </div>
+                            <div class="comment-list">
+                                <!-- Comment -->
+                                <div class="comment" id="comment-1">
+                                    <div class="image"><img alt="" src="images/blog/author.jpg" class="avatar">
+                                    </div>
+                                    <div class="text">
+                                        <div class="product-rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-o"></i>
+                                        </div>
+                                        <h5 class="name">John Doe</h5>
+                                        <span class="comment_date">Posted at 15:32h, 06 December</span>
+                                        <a class="comment-reply-link" href="#">Reply</a>
+                                        <div class="text_holder">
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem Ipsum has been the industry's standard dummy text ever
+                                                since the 1500s.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: Comment -->
+                                <!-- Comment -->
+                                <div class="comment" id="comment-1-1">
+                                    <div class="image"><img alt="" src="images/blog/author2.jpg" class="avatar">
+                                    </div>
+                                    <div class="text">
+                                        <div class="product-rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-o"></i>
+                                        </div>
+                                        <h5 class="name">John Doe</h5>
+                                        <span class="comment_date">Posted at 15:32h, 06 December</span>
+                                        <a class="comment-reply-link" href="#">Reply</a>
+                                        <div class="text_holder">
+                                            <p>It is a long established fact that a reader will be distracted by the
+                                                readable content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: Comment -->
+                                <!-- Comment -->
+                                <div class="comment" id="comment-1-2">
+                                    <div class="image"><img alt="" src="images/blog/author3.jpg" class="avatar">
+                                    </div>
+                                    <div class="text">
+                                        <div class="product-rate">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-o"></i>
+                                        </div>
+                                        <h5 class="name">John Doe</h5>
+                                        <span class="comment_date">Posted at 15:32h, 06 December</span>
+                                        <a class="comment-reply-link" href="#">Reply</a>
+                                        <div class="text_holder">
+                                            <p>There are many variations of passages of Lorem Ipsum available, but the
+                                                majority have suffered alteration in some form, by injected humour.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: Comment -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end: Product additional tabs -->
+        </div>
+    </div>
+</section>
+<!-- end: SHOP PRODUCT PAGE -->
+<!-- SHOP WIDGET PRODUTCS -->
+<section class="p-t-0">
+    <div class="container">
+        <div class="heading-text heading-line text-center">
+            <h4>Related Products you may be interested!</h4>
+        </div>
         <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2><?php echo htmlspecialchars( $product["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
+            <div class="col-lg-4">
+                <div class="widget-shop">
+                    <div class="product">
+                        <div class="product-image">
+                            <a href="#"><img src="../res/Ecommerce/images/shop/products/10.jpg"
+                                             alt="Shop product image!">
+                            </a>
+                        </div>
+                        <div class="product-description">
+                            <div class="product-category">Women</div>
+                            <div class="product-title">
+                                <h3><a href="#">Bolt Sweatshirt</a></h3>
+                            </div>
+                            <div class="product-price">
+                                <del>$30.00</del>
+                                <ins>$15.00</ins>
+                            </div>
+                            <div class="product-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="product-image">
+                            <a href="#"><img src="../res/Ecommerce/images/shop/products/6.jpg"
+                                             alt="Shop product image!">
+                            </a>
+                        </div>
+                        <div class="product-description">
+                            <div class="product-category">Women</div>
+                            <div class="product-title">
+                                <h3><a href="#">Consume Tshirt</a></h3>
+                            </div>
+                            <div class="product-price">
+                                <ins>$39.00</ins>
+                            </div>
+                            <div class="product-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="product-image">
+                            <a href="#"><img src="../res/Ecommerce/images/shop/products/7.jpg"
+                                             alt="Shop product image!">
+                            </a>
+                        </div>
+                        <div class="product-description">
+                            <div class="product-category">Man</div>
+                            <div class="product-title">
+                                <h3><a href="#">Logo Tshirt</a></h3>
+                            </div>
+                            <div class="product-price">
+                                <ins>$39.00</ins>
+                            </div>
+                            <div class="product-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="widget-shop">
+                    <div class="product">
+                        <div class="product-image">
+                            <a href="#"><img src="../res/Ecommerce/images/shop/products/11.jpg"
+                                             alt="Shop product image!">
+                            </a>
+                        </div>
+                        <div class="product-description">
+                            <div class="product-category">Man</div>
+                            <div class="product-title">
+                                <h3><a href="#">Logo Tshirt</a></h3>
+                            </div>
+                            <div class="product-price">
+                                <ins>$39.00</ins>
+                            </div>
+                            <div class="product-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="product-image">
+                            <a href="#"><img src="../res/Ecommerce/images/shop/products/9.jpg"
+                                             alt="Shop product image!">
+                            </a>
+                        </div>
+                        <div class="product-description">
+                            <div class="product-category">Women</div>
+                            <div class="product-title">
+                                <h3><a href="#">Consume Tshirt</a></h3>
+                            </div>
+                            <div class="product-price">
+                                <ins>$39.00</ins>
+                            </div>
+                            <div class="product-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="product-image">
+                            <a href="#"><img src="../res/Ecommerce/images/shop/products/3.jpg"
+                                             alt="Shop product image!">
+                            </a>
+                        </div>
+                        <div class="product-description">
+                            <div class="product-category">Man</div>
+                            <div class="product-title">
+                                <h3><a href="#">Logo Tshirt</a></h3>
+                            </div>
+                            <div class="product-price">
+                                <ins>$39.00</ins>
+                            </div>
+                            <div class="product-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="widget-shop">
+                    <div class="product">
+                        <div class="product-image">
+                            <a href="#"><img src="../res/Ecommerce/images/shop/products/1.jpg"
+                                             alt="Shop product image!">
+                            </a>
+                        </div>
+                        <div class="product-description">
+                            <div class="product-category">Women</div>
+                            <div class="product-title">
+                                <h3><a href="#">Bolt Sweatshirt</a></h3>
+                            </div>
+                            <div class="product-price">
+                                <del>$30.00</del>
+                                <ins>$15.00</ins>
+                            </div>
+                            <div class="product-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="product-image">
+                            <a href="#"><img src="../res/Ecommerce/images/shop/products/2.jpg"
+                                             alt="Shop product image!">
+                            </a>
+                        </div>
+                        <div class="product-description">
+                            <div class="product-category">Women</div>
+                            <div class="product-title">
+                                <h3><a href="#">Consume Tshirt</a></h3>
+                            </div>
+                            <div class="product-price">
+                                <ins>$39.00</ins>
+                            </div>
+                            <div class="product-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="product-image">
+                            <a href="#"><img src="../res/Ecommerce/images/shop/products/5.jpg"
+                                             alt="Shop product image!">
+                            </a>
+                        </div>
+                        <div class="product-description">
+                            <div class="product-category">Man</div>
+                            <div class="product-title">
+                                <h3><a href="#">Logo Tshirt</a></h3>
+                            </div>
+                            <div class="product-price">
+                                <ins>$39.00</ins>
+                            </div>
+                            <div class="product-rate">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
+</section>
+<!-- end: SHOP WIDGET PRODUTCS -->
+<!-- DELIVERY INFO -->
+<section class="background-grey p-t-40 p-b-0">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="product-content-right">
-                    <div class="product-breadcroumb">
-                        <a href="/">Home</a>
-                        <a href=""><?php echo htmlspecialchars( $product["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a>
+            <div class="col-lg-4">
+                <div class="icon-box effect small clean">
+                    <div class="icon">
+                        <a href="#"><i class="fa fa-gift"></i></a>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="product-images">
-                                <div class="product-main-img">
-                                    <img src="<?php echo htmlspecialchars( $product["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-6">
-                            <div class="product-inner">
-                                <h2 class="product-name"><?php echo htmlspecialchars( $product["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
-                                <div class="product-inner-price">
-                                    <ins>R$<?php echo formatPrice($product["vlprice"]); ?></ins>
-                                </div>    
-                                
-                                <form action="/cart/<?php echo htmlspecialchars( $product["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add" class="cart">
-                                    <div class="quantity">
-                                        <input type="number" size="4" class="input-text qty text" title="qtd" value="1" name="qtd" min="1" step="1">
-                                    </div>
-                                    <button class="add_to_cart_button" type="submit">Add to cart</button>
-                                </form>   
-                                
-                                <div class="product-inner-category">
-                                    <p>Categorias<?php $counter1=-1;  if( isset($categories) && ( is_array($categories) || $categories instanceof Traversable ) && sizeof($categories) ) foreach( $categories as $key1 => $value1 ){ $counter1++; ?><a href="/categories/<?php echo htmlspecialchars( $value1["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"> <?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a><?php } ?>.
-                                </div> 
-                                
-                                <div role="tabpanel">
-                                    <ul class="product-tab" role="tablist">
-                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Descrição</a></li>
-                                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Avaliações</a></li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                            <h2>Descrição do Produto</h2>  
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tristique, diam in consequat iaculis, est purus iaculis mauris, imperdiet facilisis ante ligula at nulla. Quisque volutpat nulla risus, id maximus ex aliquet ut. Suspendisse potenti. Nulla varius lectus id turpis dignissim porta. Quisque magna arcu, blandit quis felis vehicula, feugiat gravida diam. Nullam nec turpis ligula. Aliquam quis blandit elit, ac sodales nisl. Aliquam eget dolor eget elit malesuada aliquet. In varius lorem lorem, semper bibendum lectus lobortis ac.</p>
-
-                                            <p>Mauris placerat vitae lorem gravida viverra. Mauris in fringilla ex. Nulla facilisi. Etiam scelerisque tincidunt quam facilisis lobortis. In malesuada pulvinar neque a consectetur. Nunc aliquam gravida purus, non malesuada sem accumsan in. Morbi vel sodales libero.</p>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="profile">
-                                            <h2>Reviews</h2>
-                                            <div class="submit-review">
-                                                <p><label for="name">Name</label> <input name="name" type="text"></p>
-                                                <p><label for="email">Email</label> <input name="email" type="email"></p>
-                                                <div class="rating-chooser">
-                                                    <p>Your rating</p>
-
-                                                    <div class="rating-wrap-post">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
-                                                <p><input type="submit" value="Submit"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
+                    <h3>Free shipping on orders $60+</h3>
+                    <p>Order more than 60$ and you will get free shippining Worldwide. More info.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="icon-box effect small clean">
+                    <div class="icon">
+                        <a href="#"><i class="fa fa-plane"></i></a>
                     </div>
-                    
-                </div>                    
+                    <h3>Worldwide delivery</h3>
+                    <p>We deliver to the following countries: USA, Canada, Europe, Australia</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="icon-box effect small clean">
+                    <div class="icon">
+                        <a href="#"><i class="fa fa-history"></i></a>
+                    </div>
+                    <h3>60 days money back guranty!</h3>
+                    <p>Not happy with our product, feel free to return it, we will refund 100% your money!</p>
+                </div>
             </div>
         </div>
     </div>
+</section>
+<!-- end: DELIVERY INFO -->
 </div>
+<!-- end: Body Inner -->
+<!-- Scroll top -->
+<a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+<!--Plugins-->
+<script src="../res/Ecommerce/js/jquery.js"></script>
+<script src="../res/Ecommerce/js/plugins.js"></script>
+<!--Template functions-->
+<script src="../res/Ecommerce/js/functions.js"></script>
+</body>
+
+</html>

@@ -57,7 +57,7 @@
     <div class="container">
 
         <div class="heading m-b-40">
-            <h4>Featured products</h4>
+            <h4>Produtos em destaque</h4>
         </div>
 
         <!--Product list-->
@@ -83,21 +83,11 @@
                         </div>
 
                         <div class="product-description">
-                            <div class="product-category">Women</div>
                             <div class="product-title">
-                                <h3><a href="#">Bolt Sweatshirt</a></h3>
+                                <h3><a href="/products/<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></h3>
                             </div>
-                            <div class="product-price">
+                            <div class="product-price" style="width: 150px;">
                                 <ins>R$<?php echo formatPrice($value1["vlprice"]); ?></ins>
-                            </div>
-                            <div class="product-rate">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <div class="product-reviews"><a href="#">6 customer reviews</a>
                             </div>
                         </div>
                     </div>
@@ -154,7 +144,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="heading-text heading-line text-center">
-                    <h4>Browser our categories </h4>
+                    <h4>Navegue em nossas categorias</h4>
                 </div>
 
             </div>

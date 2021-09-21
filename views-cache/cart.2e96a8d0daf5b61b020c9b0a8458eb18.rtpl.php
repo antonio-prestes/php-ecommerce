@@ -73,7 +73,7 @@
                             <form class="row">
                                 <div class="col-lg-6 p-r-10 form-group">
                                     <input type="text" class="form-control" placeholder="00000-000" value="" id="cep" name="zipcode">
-                                    <input type="submit" class="btn icon-left float-right" formmethod="post" formaction="/cart/freight" value="Cálcular">
+                                    <input type="submit" class="btn icon-left float-right mt-2" formmethod="post" formaction="/cart/freight" value="Cálcular">
                                 </div>
                             </form>
                         </div>
@@ -109,7 +109,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <a type="submit" class="btn icon-left float-right"><span>Finalizar Compra</span></a>
+                            <input type="submit" value="Finalizar Compra" name="proceed" class="btn icon-left float-right">
                         </div>
                     </div>
                 </div>
